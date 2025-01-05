@@ -1,0 +1,22 @@
+Repeated DNA Sequences
+
+class Solution {
+public:
+    vector<string> findRepeatedDnaSequences(string s) {
+        if(s.length()<=10){
+            return {};
+        }
+        unordered_map<string,int> tracking;
+        vector<string> result;
+        for(int i = 0;i+9<s.length();i++){
+            tracking[s.substr(i,10)]++;
+        }
+
+        for(auto i:tracking){
+            if(i.second>=2){
+                result.push_back(i.first);
+            }
+        }
+        return result;
+    }
+};
