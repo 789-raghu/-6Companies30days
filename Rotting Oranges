@@ -1,0 +1,47 @@
+Rotting Oranges
+
+class Solution {
+public:
+    int orangesRotting(vector<vector<int>>& grid) {
+        queue<vector<int>> q;
+        int time = 0, fresh = 0, n = grid.size(), m = grid[0].size();
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (grid[i][j] == 2) {
+                    q.push({i, j});
+                } else if (grid[i][j] == 1) {
+                    fresh++;
+                }
+            }
+        }
+        
+        if (fresh == 0) return 0;
+        vector<pair<int, int>> directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+        
+        while (!q.empty()) {
+            int length = q.size();
+            bool rotted = false;
+            
+            for (int i = 0; i < length; i++) {
+                vector<int> element = q.front();
+                q.pop();
+                for (auto dir : directions) {
+                    int x = element[0] + dir.first;
+                    int y = element[1] + dir.second;
+
+                    if (x >= 0 && x < n && y >= 0 && y < m && grid[x][y] == 1) {
+                        grid[x][y] = 2;
+                        q.push({x, y});
+                        fresh--;
+                        rotted = true;
+                    }
+                }
+            }
+            
+            
+            if (rotted) ++time;
+        }
+    
+        return fresh == 0 ? time : -1;
+    }
+};
