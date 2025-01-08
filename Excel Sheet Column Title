@@ -1,0 +1,17 @@
+Excel Sheet Column Title
+
+class Solution {
+public:
+    string convertToTitle(int columnNumber) {
+        char toshow[] = "ZABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        string str;
+        while(columnNumber>26){
+            int last=columnNumber%26;
+            columnNumber=(columnNumber-1)/26;
+            str=toshow[last]+str;
+        }
+        str=toshow[columnNumber]+str;
+
+        return str;
+    }
+};
