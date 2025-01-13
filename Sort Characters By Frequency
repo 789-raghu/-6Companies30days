@@ -1,0 +1,8 @@
+Sort Characters By Frequency
+class Solution:
+    def frequencySort(self, s: str) -> str:
+        x = Counter(s)
+        a = []
+        for l in sorted(x.items(), key=lambda item: item[1], reverse=True):
+            a.append(l[0] * l[1])
+        return "".join(a)
