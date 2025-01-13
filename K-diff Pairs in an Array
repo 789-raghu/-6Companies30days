@@ -1,0 +1,27 @@
+K-diff Pairs in an Array
+
+class Solution {
+public:
+    int findPairs(vector<int>& nums, int k) {
+        if (k < 0) return 0;
+
+        unordered_map<int, int> freqMap;
+        int count = 0;
+        for (int num : nums) {
+            freqMap[num]++;
+        }
+        for (const auto& [num, freq] : freqMap) {
+            if (k == 0) {
+                if (freq > 1) {
+                    count++;
+                }
+            } else {
+                if (freqMap.count(num + k)) {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
+};
