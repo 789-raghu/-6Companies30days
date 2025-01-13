@@ -1,0 +1,10 @@
+Find Subsequence of Length K With the Largest Sum
+class Solution {
+public:
+    vector<int> maxSubsequence(vector<int>& nums, int k) {
+        sort(nums.begin(), nums.end(), greater<int>());
+        vector<int> tracking(nums.begin() + nums.size() - k, nums.end());
+
+        return tracking;
+    }
+};
